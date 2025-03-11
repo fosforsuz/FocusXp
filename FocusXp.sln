@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FocusXp.Domain", "FocusXp.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FocusXp.Infrastructure", "FocusXp.Infrastructure\FocusXp.Infrastructure.csproj", "{F47F6F9A-6432-4926-8D75-7DD80EF59485}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FocusXp.Application", "FocusXp.Application\FocusXp.Application.csproj", "{2C73F200-0F20-468A-87D0-EFBD14272D80}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{F47F6F9A-6432-4926-8D75-7DD80EF59485}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F47F6F9A-6432-4926-8D75-7DD80EF59485}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F47F6F9A-6432-4926-8D75-7DD80EF59485}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C73F200-0F20-468A-87D0-EFBD14272D80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C73F200-0F20-468A-87D0-EFBD14272D80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C73F200-0F20-468A-87D0-EFBD14272D80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C73F200-0F20-468A-87D0-EFBD14272D80}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

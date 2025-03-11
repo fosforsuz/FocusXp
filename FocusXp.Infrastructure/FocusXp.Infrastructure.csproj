@@ -25,9 +25,8 @@
 
     <ItemGroup>
         <Folder Include="Config\"/>
-        <Folder Include="Interfaces\Repository\"/>
+        <Folder Include="Interfaces\Security\" />
         <Folder Include="Interfaces\Service\"/>
-        <Folder Include="Repository\"/>
         <Folder Include="Service\"/>
     </ItemGroup>
 
