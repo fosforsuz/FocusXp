@@ -20,5 +20,11 @@ public class PomodoroSessionMapping : IEntityTypeConfiguration<PomodoroSession>
             .WithMany(user => user.PomodoroSessions)
             .HasForeignKey(session => session.UserId)
             .OnDelete(DeleteBehavior.Cascade);
+
+        builder.HasIndex(ps => ps.UserId)
+            .HasDatabaseName("IX_PomodoroSessions_UserId");
+
+        builder.HasIndex(ps => ps.WorkItemId)
+            .HasDatabaseName("IX_PomodoroSessions_WorkItemId");
     }
 }
