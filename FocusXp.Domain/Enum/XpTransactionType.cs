@@ -1,6 +1,8 @@
 namespace FocusXp.Domain.Enum;
 
-public class XpTransactionType
+public enum XpTransactionType
 {
-    
+    TaskCompletion,
+    PomodoroCompletion,
+    BadgeEarned
 }

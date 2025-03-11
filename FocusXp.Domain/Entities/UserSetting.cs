@@ -6,11 +6,11 @@ using FocusXp.Domain.Interfaces;
 namespace FocusXp.Domain.Entities;
 
 [Table("user_settings")]
-public class UserSettings : IEntity, IUpdatableEntity
+public class UserSetting : IEntity, IUpdatableEntity
 {
-    [Column("user_id")] public Guid UserId { get; set; }
+    [Column("user_id")] [Required] public Guid UserId { get; set; }
 
-    [ForeignKey("UserId")] public virtual User? User { get; set; }
+    [ForeignKey(nameof(UserId))] public virtual User? User { get; set; }
 
     [Column("theme")] public Theme Theme { get; set; } = Theme.Light;
 
@@ -48,7 +48,10 @@ public class UserSettings : IEntity, IUpdatableEntity
     [Range(0, 100, ErrorMessage = "Notification volume must be between 0 and 100.")]
     public int NotificationVolume { get; set; } = 50;
 
-    [Key] [Column("id")] public Guid Id { get; init; } = Guid.CreateVersion7();
+    [Key]
+    [Column("id")]
+    [DatabaseGenerated(DatabaseGeneratedOption.None)]
+    public Guid Id { get; init; } = Guid.CreateVersion7();
 
     [Column("updated_at")] public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 }

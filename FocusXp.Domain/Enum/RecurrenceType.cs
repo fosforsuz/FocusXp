@@ -1,6 +1,9 @@
 namespace FocusXp.Domain.Enum;
 
-public class RecurrenceType
+public enum RecurrenceType
 {
-    
+    None,
+    Daily,
+    Weekly,
+    Monthly
 }

@@ -1,6 +1,6 @@
 namespace FocusXp.Domain.Enum;
 
-public enum TaskStatus
+public enum WorkItemStatus
 {
     Pending,
     InProgress,
