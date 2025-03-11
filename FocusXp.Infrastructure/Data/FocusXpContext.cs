@@ -37,7 +37,7 @@ public class FocusXpContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        ConfigureEnums(builder: modelBuilder);
+        ConfigureEnums(modelBuilder);
         modelBuilder.ApplyConfiguration(new AttachmentMapping());
         modelBuilder.ApplyConfiguration(new BadgeMapping());
         modelBuilder.ApplyConfiguration(new PomodoroDistractionMapping());

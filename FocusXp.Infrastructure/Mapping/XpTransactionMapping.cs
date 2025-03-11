@@ -18,10 +18,10 @@ public class XpTransactionMapping : IEntityTypeConfiguration<XpTransaction>
 
         builder.HasIndex(transaction => transaction.UserId)
             .HasDatabaseName("ix_xp_transactions_user_id");
-        
+
         builder.HasIndex(transaction => transaction.ReferenceId)
             .HasDatabaseName("ix_xp_transactions_reference_id");
-        
+
         builder.HasIndex(transaction => transaction.ReferenceType)
             .HasDatabaseName("ix_xp_transactions_reference_type");
     }

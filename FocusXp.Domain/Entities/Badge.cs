@@ -33,11 +33,11 @@ public class Badge : IEntity, ICreatableEntity
 
 
     public virtual ICollection<UserBadge> UserBadges { get; set; } = new List<UserBadge>();
-    
+
+    [Column("created_at")] public DateTime CreatedAt { get; init; } = DateTime.UtcNow;
+
     [Key]
     [Column("id")]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public Guid Id { get; init; } = Guid.CreateVersion7();
-
-    [Column("created_at")] public DateTime CreatedAt { get; init; } = DateTime.UtcNow;
 }

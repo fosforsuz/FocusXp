@@ -15,10 +15,10 @@ public class SubWorkItemMapping : IEntityTypeConfiguration<SubWorkItem>
             .WithMany(item => item.SubWorkItems)
             .HasForeignKey(item => item.WorkItemId)
             .OnDelete(DeleteBehavior.Cascade);
-        
+
         builder.HasIndex(item => item.WorkItemId)
             .HasDatabaseName("IX_sub_work_items_work_item_id");
-        
+
         builder.Property(item => item.UpdatedAt)
             .HasColumnName("updated_at")
             .HasDefaultValueSql("CURRENT_TIMESTAMP")

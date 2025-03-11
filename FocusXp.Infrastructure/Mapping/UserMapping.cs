@@ -10,7 +10,7 @@ public class UserMapping : IEntityTypeConfiguration<User>
     {
         builder.Property(user => user.Id)
             .ValueGeneratedNever();
-        
+
         builder.HasIndex(user => user.Username)
             .IsUnique()
             .HasDatabaseName("users_username_unique");
