@@ -1,4 +1,6 @@
 using FocusXp.Domain.Entities;
+using FocusXp.Domain.Enum;
+using FocusXp.Infrastructure.Mapping;
 using Microsoft.EntityFrameworkCore;
 
 namespace FocusXp.Infrastructure.Data;
@@ -26,4 +28,41 @@ public class FocusXpContext : DbContext
     public virtual DbSet<WorkItem> WorkItems { get; set; }
     public virtual DbSet<WorkItemTag> WorkItemTags { get; set; }
     public virtual DbSet<XpTransaction> XpTransactions { get; set; }
+
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseNpgsql("Server=.;Database=FocusXp;Trusted_Connection=True;");
+    }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        ConfigureEnums(builder: modelBuilder);
+        modelBuilder.ApplyConfiguration(new AttachmentMapping());
+        modelBuilder.ApplyConfiguration(new BadgeMapping());
+        modelBuilder.ApplyConfiguration(new PomodoroDistractionMapping());
+        modelBuilder.ApplyConfiguration(new PomodoroSessionMapping());
+        modelBuilder.ApplyConfiguration(new SubWorkItemMapping());
+        modelBuilder.ApplyConfiguration(new TagMapping());
+        modelBuilder.ApplyConfiguration(new UserBadgeMapping());
+        modelBuilder.ApplyConfiguration(new UserDailyStatisticMapping());
+        modelBuilder.ApplyConfiguration(new UserSettingMapping());
+        modelBuilder.ApplyConfiguration(new UserMapping());
+        modelBuilder.ApplyConfiguration(new WorkItemMapping());
+        modelBuilder.ApplyConfiguration(new WorkItemTagMapping());
+        modelBuilder.ApplyConfiguration(new XpTransactionMapping());
+    }
+
+    private static void ConfigureEnums(ModelBuilder builder)
+    {
+        builder.HasPostgresEnum<DistractionType>();
+        builder.HasPostgresEnum<FocusLevel>();
+        builder.HasPostgresEnum<Priority>();
+        builder.HasPostgresEnum<RecurrenceType>();
+        builder.HasPostgresEnum<Role>();
+        builder.HasPostgresEnum<SessionType>();
+        builder.HasPostgresEnum<Theme>();
+        builder.HasPostgresEnum<WorkItemStatus>();
+        builder.HasPostgresEnum<XpTransactionType>();
+    }
 }

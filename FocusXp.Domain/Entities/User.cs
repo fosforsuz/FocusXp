@@ -52,6 +52,7 @@ public class User : ITrackableEntity
     public virtual ICollection<UserBadge> UserBadges { get; set; } = new List<UserBadge>();
     public virtual ICollection<UserDailyStatistic> UserDailyStatistics { get; set; } = new List<UserDailyStatistic>();
     public virtual ICollection<WorkItem> WorkItems { get; set; } = new List<WorkItem>();
+    public virtual ICollection<XpTransaction> XpTransactions { get; set; } = new List<XpTransaction>();
 
     [Key]
     [Column("id")]
