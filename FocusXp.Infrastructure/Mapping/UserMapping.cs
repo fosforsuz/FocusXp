@@ -19,6 +19,9 @@ public class UserMapping : IEntityTypeConfiguration<User>
             .IsUnique()
             .HasDatabaseName("users_email_unique");
 
-        
+        builder.Property(user => user.UpdatedAt)
+            .HasColumnName("updated_at")
+            .HasDefaultValueSql("CURRENT_TIMESTAMP")
+            .ValueGeneratedOnUpdate();
     }
 }

@@ -5,7 +5,7 @@ using FocusXp.Domain.Interfaces;
 namespace FocusXp.Domain.Entities;
 
 [Table("user_daily_statistics")]
-public class UsersDailyStatistic : IEntity, ICreatableEntity
+public class UserDailyStatistic : IEntity, ICreatableEntity
 {
     [Required] [Column("user_id")] public Guid UserId { get; set; }
 

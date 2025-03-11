@@ -31,10 +31,13 @@ public class Badge : IEntity, ICreatableEntity
     [Range(1, int.MaxValue, ErrorMessage = "Requirement value must be at least 1.")]
     public int RequirementValue { get; set; }
 
-    [Column("created_at")] public DateTime CreatedAt { get; init; } = DateTime.UtcNow;
 
+    public virtual ICollection<UserBadge> UserBadges { get; set; } = new List<UserBadge>();
+    
     [Key]
     [Column("id")]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public Guid Id { get; init; } = Guid.CreateVersion7();
+
+    [Column("created_at")] public DateTime CreatedAt { get; init; } = DateTime.UtcNow;
 }

@@ -18,5 +18,10 @@ public class SubWorkItemMapping : IEntityTypeConfiguration<SubWorkItem>
         
         builder.HasIndex(item => item.WorkItemId)
             .HasDatabaseName("IX_sub_work_items_work_item_id");
+        
+        builder.Property(item => item.UpdatedAt)
+            .HasColumnName("updated_at")
+            .HasDefaultValueSql("CURRENT_TIMESTAMP")
+            .ValueGeneratedOnUpdate();
     }
 }

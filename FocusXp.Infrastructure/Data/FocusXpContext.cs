@@ -21,7 +21,7 @@ public class FocusXpContext : DbContext
     public virtual DbSet<Tag> Tags { get; set; }
     public virtual DbSet<User> Users { get; set; }
     public virtual DbSet<UserBadge> UserBadges { get; set; }
-    public virtual DbSet<UsersDailyStatistic> UsersDailyStatistics { get; set; }
+    public virtual DbSet<UserDailyStatistic> UsersDailyStatistics { get; set; }
     public virtual DbSet<UserSetting> UserSettings { get; set; }
     public virtual DbSet<WorkItem> WorkItems { get; set; }
     public virtual DbSet<WorkItemTag> WorkItemTags { get; set; }

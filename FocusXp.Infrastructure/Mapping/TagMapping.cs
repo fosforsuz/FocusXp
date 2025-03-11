@@ -22,5 +22,10 @@ public class TagMapping : IEntityTypeConfiguration<Tag>
         builder.HasIndex(tag => new { tag.UserId, tag.Name })
             .IsUnique()
             .HasDatabaseName("IX_tags_user_id_name");
+        
+        builder.Property(tag => tag.UpdatedAt)
+            .HasColumnName("updated_at")
+            .HasDefaultValueSql("CURRENT_TIMESTAMP")
+            .ValueGeneratedOnUpdate();
     }
 }

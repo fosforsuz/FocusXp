@@ -20,7 +20,7 @@ public class SubWorkItem : ITrackableEntity
     [DatabaseGenerated(DatabaseGeneratedOption.None)]
     public Guid Id { get; init; } = Guid.CreateVersion7();
 
-    [Column("created_at")] public DateTime CreatedAt { get; init; }
-    [Column("updated_at")] public DateTime UpdatedAt { get; set; }
+    [Column("created_at")] public DateTime CreatedAt { get; init; } = DateTime.UtcNow;
+    [Column("updated_at")] public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
     [Column("deleted_at")] public bool IsDeleted { get; set; }
 }
