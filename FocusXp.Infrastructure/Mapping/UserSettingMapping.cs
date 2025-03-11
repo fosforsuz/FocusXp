@@ -13,16 +13,16 @@ public class UserSettingMapping : IEntityTypeConfiguration<UserSetting>
 
         builder.HasOne(setting => setting.User)
             .WithOne(user => user.UserSetting)
+            .HasForeignKey<UserSetting>(setting => setting.UserId)
             .OnDelete(DeleteBehavior.Cascade);
 
         builder.HasIndex(setting => setting.UserId)
             .IsUnique()
             .HasDatabaseName("IX_user_settings_user_id");
-        
+
         builder.Property(setting => setting.UpdatedAt)
             .HasColumnName("updated_at")
             .HasDefaultValueSql("CURRENT_TIMESTAMP")
             .ValueGeneratedOnUpdate();
-        
     }
 }

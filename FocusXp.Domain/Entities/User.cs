@@ -51,6 +51,7 @@ public class User : ITrackableEntity
     public virtual ICollection<PomodoroSession> PomodoroSessions { get; set; } = new List<PomodoroSession>();
     public virtual ICollection<UserBadge> UserBadges { get; set; } = new List<UserBadge>();
     public virtual ICollection<UserDailyStatistic> UserDailyStatistics { get; set; } = new List<UserDailyStatistic>();
+    public virtual ICollection<WorkItem> WorkItems { get; set; } = new List<WorkItem>();
 
     [Key]
     [Column("id")]

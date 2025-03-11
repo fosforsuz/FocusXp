@@ -21,6 +21,7 @@ public class Tag : ITrackableEntity
     public string? Color { get; set; }
 
     public virtual ICollection<WorkItem> WorkItems { get; set; } = new HashSet<WorkItem>();
+    public virtual ICollection<WorkItemTag> WorkItemTags { get; set; } = new HashSet<WorkItemTag>();
 
     [Key]
     [Column("id")]

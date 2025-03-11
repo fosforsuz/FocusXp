@@ -14,7 +14,7 @@ public class WorkItemTag : IEntity, ICreatableEntity, IUpdatableEntity
     [Required] [Column("tag-id")] public Guid TagId { get; init; }
     [ForeignKey("TagId")] public virtual Tag? Tag { get; init; }
 
-    [Column("created-at")] public DateTime CreatedAt { get; init; } = DateTime.UtcNow;
+    [Column("created_at")] public DateTime CreatedAt { get; init; } = DateTime.UtcNow;
 
 
     [Key]
@@ -22,5 +22,5 @@ public class WorkItemTag : IEntity, ICreatableEntity, IUpdatableEntity
     [DatabaseGenerated(DatabaseGeneratedOption.None)]
     public Guid Id { get; init; }
 
-    [Column("updated-at")] public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+    [Column("updated_at")] public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 }
