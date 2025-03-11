@@ -47,6 +47,7 @@ public class User : ITrackableEntity
 
     public virtual UserSetting? UserSetting { get; set; }
 
+    public virtual ICollection<Tag> Tags { get; set; } = new List<Tag>();
     public virtual ICollection<PomodoroSession> PomodoroSessions { get; set; } = new List<PomodoroSession>();
 
     [Key]
