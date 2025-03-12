@@ -1,6 +1,9 @@
+using FluentResults;
+using MediatR;
+
 namespace FocusXp.Application.Command;
 
-public class UpdatePasswordCommand
+public class UpdatePasswordCommand : IRequest<Result<Unit>>
 {
     public Guid UserId { get; set; }
     public string OldPassword { get; set; } = null!;
