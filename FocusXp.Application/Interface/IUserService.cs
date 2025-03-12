@@ -13,4 +13,5 @@ public interface IUserService
     Task<Result<User>> CreateUserAsync(CreateUserCommand createUser,
         CancellationToken cancellationToken);
     Task<Result<Unit>> UpdatePasswordAsync(UpdatePasswordCommand command, CancellationToken cancellationToken);
+    Task<Result<Unit>> UpdateUserAsync(UpdateUserCommand command, CancellationToken cancellationToken);
 }

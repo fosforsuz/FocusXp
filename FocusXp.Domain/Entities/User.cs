@@ -93,4 +93,12 @@ public class User : ITrackableEntity
         HashPassword(newPassword);
         UpdatedAt = DateTime.UtcNow;
     }
+
+    public void UpdateUser(string fullname, string email, string username)
+    {
+        Fullname = fullname;
+        Email = email;
+        Username = username;
+        UpdatedAt = DateTime.UtcNow;
+    }
 }

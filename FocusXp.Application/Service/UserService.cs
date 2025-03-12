@@ -67,8 +67,24 @@ public class UserService : BaseService, IUserService
 
         if (command.NewPassword != command.ConfirmPassword)
             return Result.Fail<Unit>(ErrorMessages.Invalid.PasswordNotMatch);
-        
+
         user.UpdatePassword(command.NewPassword);
+
+        return await UpdateUserAsync(user, cancellationToken);
+    }
+
+    public async Task<Result<Unit>> UpdateUserAsync(UpdateUserCommand command, CancellationToken cancellationToken)
+    {
+        var userExistResult = await CheckUserExists(command.UserId, command.Email, command.Username, cancellationToken);
+        if (userExistResult.IsFailed)
+            return Result.Fail<Unit>(userExistResult.Errors);
+
+        var userResult = await GetUserById(command.UserId, cancellationToken);
+        if (userResult.IsFailed)
+            return Result.Fail<Unit>(userResult.Errors);
+
+        var user = userResult.Value;
+        user.UpdateUser(command.Username, command.Email, command.Fullname);
 
         return await UpdateUserAsync(user, cancellationToken);
     }
@@ -89,6 +105,31 @@ public class UserService : BaseService, IUserService
 
         var isUsernameExist = await _unitOfWork.Users.AnyAsync(
             user => user.Username == username && !user.IsDeleted,
+            cancellationToken
+        );
+
+        if (isUsernameExist)
+            result.Errors.Add(new Error(ErrorMessages.Exists.UsernameExists));
+
+        return result.Errors.Any()
+            ? Result.Fail(result.Errors)
+            : Result.Ok();
+    }
+
+    private async Task<Result> CheckUserExists(Guid userId, string email, string username, CancellationToken cancellationToken)
+    {
+        var result = new Result();
+
+        var isEmailExist = await _unitOfWork.Users.AnyAsync(
+            user => user.Email == email && user.Id != userId && !user.IsDeleted,
+            cancellationToken
+        );
+
+        if (isEmailExist)
+            result.Errors.Add(new Error(ErrorMessages.Exists.EmailExists));
+
+        var isUsernameExist = await _unitOfWork.Users.AnyAsync(
+            user => user.Username == username && user.Id != userId && !user.IsDeleted,
             cancellationToken
         );
 
