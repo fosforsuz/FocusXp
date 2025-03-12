@@ -67,7 +67,7 @@ public class UserService : BaseService, IUserService
 
         if (command.NewPassword != command.ConfirmPassword)
             return Result.Fail<Unit>(ErrorMessages.Invalid.PasswordNotMatch);
-
+        
         user.UpdatePassword(command.NewPassword);
 
         return await UpdateUserAsync(user, cancellationToken);
