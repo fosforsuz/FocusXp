@@ -21,6 +21,7 @@ public interface IUnitOfWork : IDisposable, IAsyncDisposable
 
     IRepository<T> GetRepository<T>() where T : class, IBaseEntity;
     TRepository GetCustomRepository<TRepository>() where TRepository : class;
+    bool IsTransactionExists();
     Task BeginTransactionAsync(bool useDistributedTransaction = false, CancellationToken cancellationToken = default);
     Task CommitTransactionAsync(CancellationToken cancellationToken = default);
     Task RollbackTransactionAsync(CancellationToken cancellationToken = default);

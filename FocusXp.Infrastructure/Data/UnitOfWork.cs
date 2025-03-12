@@ -12,6 +12,12 @@ namespace FocusXp.Infrastructure.Data;
 
 internal class UnitOfWork : IUnitOfWork
 {
+    public UnitOfWork(FocusXpContext context, IServiceProvider serviceProvider)
+    {
+        _context = context ?? throw new ArgumentNullException(nameof(context));
+        _serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
+    }
+
     #region Properties and Fields
 
     private readonly DbContext _context;
@@ -22,12 +28,6 @@ internal class UnitOfWork : IUnitOfWork
     private IDbContextTransaction? _transaction;
 
     #endregion
-
-    public UnitOfWork(FocusXpContext context, IServiceProvider serviceProvider)
-    {
-        _context = context ?? throw new ArgumentNullException(nameof(context));
-        _serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
-    }
 
     #region Repositories
 
@@ -77,6 +77,11 @@ internal class UnitOfWork : IUnitOfWork
             : await _context.Database.BeginTransactionAsync(cancellationToken);
     }
 
+    public bool IsTransactionExists()
+    {
+        return _transaction is not null;
+    }
+
     public async Task CommitTransactionAsync(CancellationToken cancellationToken = default)
     {
         if (_transaction is null)
@@ -112,14 +117,9 @@ internal class UnitOfWork : IUnitOfWork
             throw new ObjectDisposedException(nameof(UnitOfWork),
                 "This UnitOfWork instance has already been disposed.");
 
-        var affectedRows = await _context.SaveChangesAsync(cancellationToken);
-
-        if (_transaction != null)
-            await CommitTransactionAsync(cancellationToken);
-
-
-        return affectedRows;
+        return await _context.SaveChangesAsync(cancellationToken);
     }
+
 
     private async Task DisposeTransactionAsync()
     {

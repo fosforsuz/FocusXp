@@ -56,7 +56,7 @@ public class User : ITrackableEntity
 
     [Key]
     [Column("id")]
-    [DatabaseGenerated(DatabaseGeneratedOption.None)]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public Guid Id { get; init; } = Guid.CreateVersion7();
 
     [Column("created_at")] public DateTime CreatedAt { get; init; } = DateTime.UtcNow;
@@ -64,4 +64,33 @@ public class User : ITrackableEntity
     [Column("updated_at")] public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 
     [Column("is_deleted")] public bool IsDeleted { get; set; }
+
+    public static User CreateNewUser(string username, string email, string fullname, string password)
+    {
+        var user = new User
+        {
+            Username = username,
+            Email = email,
+            Fullname = fullname,
+            PasswordHash = string.Empty
+        };
+        user.HashPassword(password);
+        return user;
+    }
+
+    public bool CheckPassword(string password)
+    {
+        return BCrypt.Net.BCrypt.Verify(password, PasswordHash);
+    }
+
+    private void HashPassword(string password)
+    {
+        PasswordHash = BCrypt.Net.BCrypt.HashPassword(password);
+    }
+
+    public void UpdatePassword(string newPassword)
+    {
+        HashPassword(newPassword);
+        UpdatedAt = DateTime.UtcNow;
+    }
 }

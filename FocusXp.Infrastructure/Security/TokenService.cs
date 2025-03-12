@@ -7,7 +7,7 @@ using FocusXp.Infrastructure.Model;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
-namespace FocusXp.Infrastructure.Service;
+namespace FocusXp.Infrastructure.Security;
 
 internal class TokenService(IOptions<JwtSettings> jwtSettings) : ITokenService
 {

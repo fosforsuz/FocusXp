@@ -1,6 +1,14 @@
+using FluentResults;
+using FocusXp.Application.Command;
+using FocusXp.Application.Dto;
+using FocusXp.Domain.Entities;
+
 namespace FocusXp.Application.Interface;
 
 public interface IUserService
 {
-    
+    Task<Result<UserDto>> GetUserProfileAsync(Guid userId, CancellationToken cancellationToken);
+
+    Task<Result<User>> CreateUserAsync(CreateUserCommand createUser,
+        CancellationToken cancellationToken);
 }

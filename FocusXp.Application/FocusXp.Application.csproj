@@ -6,4 +6,20 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+        <PackageReference Include="FluentResults" Version="3.16.0"/>
+        <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0"/>
+        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.0.0-preview1"/>
+        <PackageReference Include="MediatR" Version="12.4.1"/>
+        <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Extension\"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\FocusXp.Infrastructure\FocusXp.Infrastructure.csproj"/>
+    </ItemGroup>
+
 </Project>
